@@ -1,0 +1,2 @@
+print("Wurst")
+print(Schzle)
