@@ -1,2 +1,7 @@
 print("Wurst")
-print(Schzle)
+print(fhasfhaskjfhakjfhasfkaf)
+
+asdasdsadsad
+dsadsadasd asdas dsa
+dsdada
+assert
