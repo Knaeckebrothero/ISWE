@@ -1,7 +1,5 @@
 print("Wurst")
-print(fhasfhaskjfhakjfhasfkaf)
-
-asdasdsadsad
+print("fhasfhaskjfhakjfhasfkaf")
 
 def einrück():
     print("TestEinrück")
