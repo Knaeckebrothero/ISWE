@@ -4,5 +4,5 @@ print("fhasfhaskjfhakjfhasfkaf")
 def einrück():
     print("TestEinrück")
 
-def einrück():
+def einrück2():
     print("TestEinrück")
