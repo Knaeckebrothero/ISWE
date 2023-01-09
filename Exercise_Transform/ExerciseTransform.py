@@ -3,7 +3,7 @@ import os.path as pt
 
 import pandas as pd
 
-
+# Bons: Checks if File exists.
 def does_csv_exists(filepath: str):
     """
     Checks if a csv file exists in the location.
@@ -20,26 +20,28 @@ def does_csv_exists(filepath: str):
 
     return False
 
-
-# task 1
+# Task 1: Extract the same data from the last assignment (FinancialSample.csv), but this time store it into a Pandas
+# Dataframe. Return the last 10 entries.
+print("\n----------------Task 1----------------\n")
 def read_file_and_print_tail(delim: str = ";"):
     """
     Reads a csv file and print last 10 rows if exists.
     :param delim: csv file delimiter, by default ';'
     :return: Pandas DataFrame or None.
     """
-    exists = does_csv_exists('../FinancialSample.csv')
+    exists = does_csv_exists('FinancialSample.csv')
 
     if not exists:
         return None
 
-    data = pd.read_csv('../FinancialSample.csv', delimiter=delim)
+    data = pd.read_csv('FinancialSample.csv', delimiter=delim)
     data = data.rename(columns=lambda x: x.strip())
 
-    print("File read successfully. The last 10 rows:")
-    print(data.tail(10))
+    print("File read successfully!")
+
     return data
 
+print(read_file_and_print_tail().tail(10))
 
 def format_date_to_american(date_mal_formatted: datetime.date):
     """
@@ -50,7 +52,8 @@ def format_date_to_american(date_mal_formatted: datetime.date):
     return date_mal_formatted.strftime('%m/%d/%y')
 
 
-# task 2
+# Task 2: Transform the column values of ”Date” to American format (MM/DD/YYYY) with datetime library.
+print("\n----------------Task 2----------------\n")
 def transform_date_to_american_format(df: pd.DataFrame):
     """
     Transforms Date column from any date format to %M/%D/%Y.
@@ -68,7 +71,9 @@ def transform_date_to_american_format(df: pd.DataFrame):
 raw_data = transform_date_to_american_format(read_file_and_print_tail())
 
 
-# task 3
+# Create a new Pandas Dateframe with following columns and content (Product, Profit, COGS, Sales).
+print("\n----------------Task 3----------------\n")
+
 def get_sub_dataframe(df: pd.DataFrame):
     """
     Returns a subset of data frame containing "Product", "Profit", "COGS", "Sales".
