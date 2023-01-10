@@ -43,6 +43,9 @@ def read_file_and_print_tail(delim: str = ";"):
 
 print(read_file_and_print_tail().tail(10))
 
+# Task 2: Transform the column values of ”Date” to American format (MM/DD/YYYY) with datetime library.
+print("\n----------------Task 2----------------\n")
+
 def format_date_to_american(date_mal_formatted: datetime.date):
     """
     Formats date format to %M/%D/%Y.
@@ -51,9 +54,6 @@ def format_date_to_american(date_mal_formatted: datetime.date):
     """
     return date_mal_formatted.strftime('%m/%d/%y')
 
-
-# Task 2: Transform the column values of ”Date” to American format (MM/DD/YYYY) with datetime library.
-print("\n----------------Task 2----------------\n")
 def transform_date_to_american_format(df: pd.DataFrame):
     """
     Transforms Date column from any date format to %M/%D/%Y.
@@ -81,6 +81,5 @@ def get_sub_dataframe(df: pd.DataFrame):
     :return: Dataframe with 4 columns "Product", "Profit", "COGS", "Sales"
     """
     return df.loc[:, ["Product", "Profit", "COGS", "Sales"]]
-
 
 print(get_sub_dataframe(raw_data).sample())
