@@ -3,7 +3,7 @@ name: Python application
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-    branches: [ "main", "development", "feature/*" ]
+    branches: [ "main", "*", "*/*" ]
     
 permissions:
   contents: read
