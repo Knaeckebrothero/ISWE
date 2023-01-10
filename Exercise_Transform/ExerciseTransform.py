@@ -1,3 +1,14 @@
+"""
+Assignment 3: Transformation
+https://github.com/Knaeckebrothero/ISWE
+
+Group 1
+Iman Osman 1351664,
+Niklas Riel 1253801,
+Amine Amzil 1286865,
+Dusan Milenkovic 1269073
+"""
+
 import datetime
 import os.path as pt
 
@@ -23,7 +34,7 @@ def does_csv_exists(filepath: str):
 # Task 1: Extract the same data from the last assignment (FinancialSample.csv), but this time store it into a Pandas
 # Dataframe. Return the last 10 entries.
 print("\n----------------Task 1----------------\n")
-def read_file_and_print_tail(delim: str = ";"):
+def read_file(delim: str = ";"):
     """
     Reads a csv file and print last 10 rows if exists.
     :param delim: csv file delimiter, by default ';'
@@ -37,11 +48,10 @@ def read_file_and_print_tail(delim: str = ";"):
     data = pd.read_csv('FinancialSample.csv', delimiter=delim)
     data = data.rename(columns=lambda x: x.strip())
 
-    print("File read successfully!")
-
     return data
 
-print(read_file_and_print_tail().tail(10))
+print("File read successfully! Here is a sample of 10 rows:")
+print(read_file().tail(10))
 
 # Task 2: Transform the column values of ”Date” to American format (MM/DD/YYYY) with datetime library.
 print("\n----------------Task 2----------------\n")
@@ -61,17 +71,14 @@ def transform_date_to_american_format(df: pd.DataFrame):
     :return: Pandas Dataframe with Date column formatted.
     """
     df["Date"] = pd.to_datetime(df["Date"])
-    print("formatting date to american style.")
     df["Date"] = df["Date"].transform(format_date_to_american)
-    print("Date formatting is done. Here is a sample of 10 rows:")
+    print("Date has been formatted to american style. Here is a sample of 10 rows:")
     print(df["Date"].sample(10))
     return df
 
+raw_data = transform_date_to_american_format(read_file())
 
-raw_data = transform_date_to_american_format(read_file_and_print_tail())
-
-
-# Create a new Pandas Dateframe with following columns and content (Product, Profit, COGS, Sales).
+# Task 3: Create a new Pandas Dateframe with following columns and content (Product, Profit, COGS, Sales).
 print("\n----------------Task 3----------------\n")
 
 def get_sub_dataframe(df: pd.DataFrame):
@@ -82,4 +89,76 @@ def get_sub_dataframe(df: pd.DataFrame):
     """
     return df.loc[:, ["Product", "Profit", "COGS", "Sales"]]
 
-print(get_sub_dataframe(raw_data).sample())
+print("A new Pandas Dateframe with the required columns and contents has been created. Here is a sample of 10 rows:")
+print(get_sub_dataframe(raw_data).sample(10))
+
+# Task 4: Read the columns ”Month Number, ”Month Name” and ”Year and create one single column out of it
+# with a merged date.
+print("\n----------------Task 4----------------\n")
+
+# Imans way to read the csv (not compatible with Amines)
+# On the list of things to be refactored later.
+csv_file = open("FinancialSample.csv", 'r')
+
+# collect the lines
+file_lines = csv_file.readlines()
+
+# add the values into lists
+table = [line.replace("ï»¿", "").strip().split(';') for line in file_lines]  # --- .replace(" ", "")
+table_no_title = table[1:]
+new_table = (zip(*table_no_title))
+new_table_list = list(new_table)
+titles = table[0]
+
+dict_l = {}
+for ist, lnn in enumerate(new_table_list):
+    trial_dict = {titles[ist]: new_table_list[ist]}
+    dict_l.update(trial_dict)
+
+data_frame_1 = pd.DataFrame(dict_l)
+
+# rename the columns Year, Month Number, and Month Name to year, month, and day
+# inplace=True determines that the changes occur in the current Dataframe
+data_frame_1.rename(columns={'Year': 'year', 'Month Number': 'day', ' Month Name ': 'month'}, inplace=True)
+
+# the month names are replaces with their respective month numbers
+data_frame_1['month'] = data_frame_1['month'].replace([' January ', ' February ', ' March ', ' April ', ' May ', ' June ', ' July ',
+                                                   ' August ', ' September ', ' October ', ' November ', ' December '],
+                                                      ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'])
+
+# the to.datetime function is used to convert the year, month, and day data into a date format
+merged_date = pd.to_datetime(data_frame_1[['year', 'month', 'day']])
+
+# the columns year, month, and day are removed
+data_frame_1 = data_frame_1.drop('year', axis=1)
+data_frame_1 = data_frame_1.drop('month', axis=1)
+data_frame_1 = data_frame_1.drop('day', axis=1)
+
+# the merged date column is added to the Dataframe with the name "Merged Data"
+data_frame_1['Merged Date'] = merged_date
+
+print("Columns have been combined. Here is a sample of 10 rows:")
+print(merged_date.sample(10))
+
+# Task 5: Find the position of the ten biggest local max values. A local max value is a value, that is surrounded by
+# two lower values. For example: [1, 3, 8, 5, 10, 4] → 8 and 10 are local max values, so the result would
+# be position 2 and position 4
+print("\n----------------Task 5----------------\n")
+
+# Task 6: Create a new dataframe with every X entry of the data, use panda specific functions to achieve this (pandas
+# is mandatory to use). X is the group number.
+print("\n----------------Task 6----------------\n")
+
+# a new Dataframe is created with every 4th data entry with help of the iloc function.
+# the reset_index function creates an index that starts at 0 and increments by 1, the drop=True statement removes the column with the old indexs
+new_data_frame = pd.DataFrame(data_frame_1.iloc[::4, :].reset_index(drop = True))
+
+print("A new Dataframe has been created with every 4th data entry. Here is a sample of 10 rows:")
+print(new_data_frame.sample(10))
+
+# Task 7: While reading in the csv change all values in the discount column (this means in the pandas.read csv
+# function itself) and change the discount column values by the following logic:
+# if ”-” and ≤ 200→”Low”
+# elif > 200 and < 2000→”Medium”
+# elif ≥ 2000→”High”
+print("\n----------------Task 7----------------\n")
