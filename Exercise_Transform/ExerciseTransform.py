@@ -11,8 +11,9 @@ Dusan Milenkovic 1269073
 
 import datetime
 import os.path as pt
-
 import pandas as pd
+import numpy as np
+import ast
 
 # Bons: Checks if File exists.
 def does_csv_exists(filepath: str):
@@ -144,6 +145,22 @@ print(merged_date.sample(10))
 # two lower values. For example: [1, 3, 8, 5, 10, 4] → 8 and 10 are local max values, so the result would
 # be position 2 and position 4
 print("\n----------------Task 5----------------\n")
+
+#Remove non char and non digit values from str
+sample = []
+
+for s in read_file().get("Sales"):
+    v = s.replace("$", "")
+    v = v.replace(".", "")
+    v = v.replace(",", ".")
+    v = v.replace(" ", "")
+    v = v.replace("-", "0")
+    v = v.replace("(", "")
+    v = v.replace(")", "")
+    sample.append(ast.literal_eval(v))
+
+a = np.array(sample)
+print(np.r_[True, a[1:] < a[:-1]] & np.r_[a[:-1] < a[1:], True])
 
 # Task 6: Create a new dataframe with every X entry of the data, use panda specific functions to achieve this (pandas
 # is mandatory to use). X is the group number.
