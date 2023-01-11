@@ -88,6 +88,7 @@ print(new_data_frame.sample(10))
 # elif > 200 and < 2000→”Medium”
 # elif ≥ 2000→”High”
 print("\n----------------Task 7----------------\n")
+
 print("In Task 1 the csv file has been read and saved in a Dataframe.\n" +
       "In this process we used converters to convert the Discounts.\n" +
       "Please see the solution for task one.\n")
