@@ -15,28 +15,24 @@ import pandas
 import pandas as pd
 import numpy as np
 
-from Functions import ReadCSV as read
-from Functions import ReformateDate as reformate
-from Functions import MergeDate as merge
+from Functions import ReadCSV as Read
+from Functions import ReformateDate as Reformat
+
+from Functions import MergeDate as Merge
+
 from Functions import LocalMaximum as locMax
 
 # Task 1: Extract the same data from the last assignment (FinancialSample.csv), but this time store it into a Pandas
 # Dataframe. Return the last 10 entries.
 print("\n----------------Task 1----------------\n")
-
-data: pandas.DataFrame = read.read_file("FinancialSample.csv")
-
+data: pandas.DataFrame = Read.read_file("FinancialSample.csv")
 print("File read successfully! Here is a sample of 10 rows:")
 print(data.tail(10))
-
 # Task 2: Transform the column values of ”Date” to American format (MM/DD/YYYY) with datetime library.
 print("\n----------------Task 2----------------\n")
-
-raw_data = reformate.transform_date_to_american_format(read.read_file("FinancialSample.csv"))
-
+raw_data = Reformat.transform_date_to_american_format(Read.read_file("FinancialSample.csv"))
 # Task 3: Create a new Pandas Dateframe with following columns and content (Product, Profit, COGS, Sales).
 print("\n----------------Task 3----------------\n")
-
 df: pd.DataFrame = raw_data
 
 print("A new Pandas Dateframe with the required columns and contents has been created. Here is a sample of 10 rows:")
@@ -47,7 +43,7 @@ print(df.loc[:, ["Product", "Profit", "COGS", "Sales"]].sample(10))
 print("\n----------------Task 4----------------\n")
 
 print("Columns have been combined. Here is a sample of 10 rows:")
-print(merge.merged_date.sample(10))
+print(Merge.merged_date.sample(10))
 
 # Task 5: Find the position of the ten biggest local max values. A local max value is a value, that is surrounded by
 # two lower values. For example: [1, 3, 8, 5, 10, 4] → 8 and 10 are local max values, so the result would
@@ -57,7 +53,7 @@ print("\n----------------Task 5----------------\n")
 # Remove non char and non digit values from str
 sample = []
 
-for s in read.read_file("FinancialSample.csv").get("Sales"):
+for s in Read.read_file("FinancialSample.csv").get("Sales"):
     v = s.replace("$", "")
     v = v.replace(".", "")
     v = v.replace(",", ".")
@@ -77,7 +73,7 @@ print("\n----------------Task 6----------------\n")
 
 # a new Dataframe is created with every 4th data entry with help of the iloc function.
 # the reset_index function creates an index that starts at 0 and increments by 1, the drop=True statement removes the column with the old indexs
-new_data_frame = pd.DataFrame(merge.data_frame_1.iloc[::4, :].reset_index(drop=True))
+new_data_frame = pd.DataFrame(Merge.data_frame_1.iloc[::4, :].reset_index(drop=True))
 
 print("A new Dataframe has been created with every 4th data entry. Here is a sample of 10 rows:")
 print(new_data_frame.sample(10))
