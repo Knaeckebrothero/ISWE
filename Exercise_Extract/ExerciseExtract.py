@@ -1,5 +1,6 @@
 """
 Assignment 2: Extract
+https://github.com/Knaeckebrothero/ISWE
 
 Group 1
 Iman Osman 1351664,
@@ -8,7 +9,8 @@ Amine Amzil 1286865,
 Dusan Milenkovic 1269073
 """
 
-# Task 1: Read the .csv by using open() and transform it in dictionary of the following form.
+# Task 1: Read the .csv by using open() and transform it in dictionary of
+# the following form.
 print("\n----------------Task 1----------------\n")
 
 """
@@ -52,11 +54,12 @@ for index, headline in enumerate(headlines):
     sample[headlines[index]] = row
     print(headlines[index], sample[headlines[index]])
 
-# Task 2: Find the lowest, the highest and the average value of the column ”UNIT SOLD”.
+# Task 2: Find the lowest, the highest and the average value of the column
+# ”UNIT SOLD”.
 print("\n----------------Task 2----------------\n")
 
 '''
-First we convert the data from string to float and put it into a list. 
+First we convert the data from string to float and put it into a list.
 Then we calculate the minimum and maximum values using the corresponding functions (min()-max()).
 Through sum() divided by len() we calculate the average value.
 '''
@@ -95,7 +98,7 @@ for s in sample:
             waehrung.append(s)
             break
 
-#Remove non char and non digit values from str
+# Remove non char and non digit values from str
 for x in waehrung:
     converted = []
 
@@ -104,7 +107,8 @@ for x in waehrung:
         v = v.replace(".", "")
         v = v.replace(",", ".")
         v = v.replace(" ", "")
-        # We chose to replace the -$ with 0, because it is easier to work with (0% discount simply stands for no discount)
+        # We chose to replace the -$ with 0, because it is easier to work with
+        # (0% discount simply stands for no discount)
         v = v.replace("-", "0")
         v = v.replace("(", "")
         v = v.replace(")", "")
@@ -116,6 +120,8 @@ for x in waehrung:
 
 # Conversion functions
 # 1 USD = 1,05 Euro (05.12.22)
+
+
 def usdToEuro(money):
     exchanged = []
     for x in money:
@@ -125,6 +131,8 @@ def usdToEuro(money):
     return exchanged
 
 # 1 USD = 136,55 Japanese Yen (05.12.22)
+
+
 def usdToYen(money):
     exchanged = []
     for x in money:
@@ -134,6 +142,8 @@ def usdToYen(money):
     return exchanged
 
 # 1 USD = 0,94 Swiss Franc (05.12.22)
+
+
 def usdToSwissFranc(money):
     exchanged = []
     for x in money:
@@ -142,18 +152,20 @@ def usdToSwissFranc(money):
     # print(w+"$", "has been exchanged to Swiss Franc", sample[w + "_in_Swiss_Franc"])
     return exchanged
 
+
 # Convert to different currency
 for x in waehrung:
     print(x, "in Dollar ist", sample[x + "_in_Dollar"])
     print(x, "in Euro ist", usdToEuro(sample[x + "_in_Dollar"]))
     print(x, "in Yen ist", usdToYen(sample[x + "_in_Dollar"]))
-    print(x, "in Schweizer Franken ist", usdToSwissFranc(sample[x + "_in_Dollar"]), "\n")
+    print(x, "in Schweizer Franken ist", usdToSwissFranc(
+        sample[x + "_in_Dollar"]), "\n")
 
 # Task 4: Find the number of rows for the year 2013 and for the year 2014.
 print("\n----------------Task 4----------------\n")
 
 '''
-We iterate through years and count the occurrences, so that we can then print the results.  
+We iterate through years and count the occurrences, so that we can then print the results.
 '''
 
 # Count number of rows
@@ -166,7 +178,7 @@ for year in sample["Year"]:
     if "2014" in year:
         n14 = n14 + 1
 
-#Print the results
+# Print the results
 print("There are", n13, "entries for year 2013 and", n14, "for year 2014.")
 
 # Task 5: Find the number of rows that have no Discounts.
@@ -183,10 +195,11 @@ for y in sample["Discounts_in_Dollar"]:
     if 0 == y:
         noDiscount = noDiscount + 1
 
-#Print the results
+# Print the results
 print("There are:", noDiscount, "entries without a discount.")
 
-# Task 6: Change all Month Names to their corresponding numeric values (January = 1, February = 2, ...).
+# Task 6: Change all Month Names to their corresponding numeric values
+# (January = 1, February = 2, ...).
 print("\n----------------Task 6----------------\n")
 
 """
