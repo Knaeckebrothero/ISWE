@@ -71,7 +71,6 @@ def read_file(path, delim: str = ";"):
 
         return number
 
-
     data: pd.DataFrame = pd.read_csv(
         'FinancialSample.csv',
         delimiter=delim,
