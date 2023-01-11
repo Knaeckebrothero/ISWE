@@ -195,3 +195,5 @@ print(new_data_frame.sample(10))
 # elif > 200 and < 2000→”Medium”
 # elif ≥ 2000→”High”
 print("\n----------------Task 7----------------\n")
+
+print(pd.read_csv('FinancialSample.csv', delimiter=";"))
