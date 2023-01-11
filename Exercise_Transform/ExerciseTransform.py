@@ -86,5 +86,3 @@ print(new_data_frame.sample(10))
 print("\n----------------Task 7----------------\n")
 
 print(pd.read_csv('FinancialSample.csv', delimiter=";"))
-print("We still need to do this one!")
-print("Wir sollten uns beeilen!")
