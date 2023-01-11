@@ -1,6 +1,5 @@
 """
 Assignment 2: Extract
-https://github.com/Knaeckebrothero/ISWE
 
 Group 1
 Iman Osman 1351664,
