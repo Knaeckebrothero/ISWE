@@ -11,8 +11,6 @@ permissions:
 
 jobs:
   autopep8:
-    # Check if the PR is not from a fork
-    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
