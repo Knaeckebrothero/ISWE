@@ -17,7 +17,6 @@ import numpy as np
 
 from Functions import ReadCSV as Read
 from Functions import ReformateDate as Reformat
-
 from Functions import MergeDate as Merge
 
 from Functions import LocalMaximum as locMax
