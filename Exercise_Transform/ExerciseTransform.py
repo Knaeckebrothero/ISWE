@@ -56,9 +56,10 @@ print(Merge.merged_date.sample(10))
 # be position 2 and position 4
 print("\n----------------Task 5----------------\n")
 
-# Remove non char and non digit values from str
+
 sample = []
 
+# Remove non char and non digit values from str
 for s in Read.read_file("FinancialSample.csv").get("Sales"):
     v = s.replace("$", "")
     v = v.replace(".", "")
@@ -97,4 +98,6 @@ print("\n----------------Task 7----------------\n")
 print("In Task 1 the csv file has been read and saved in a Dataframe.\n" +
       "In this process we used converters to convert the Discounts.\n" +
       "Please see the solution for task one.\n")
+
+# prints out the converted values in Samples of 10
 print(data["Discounts"].sample(10))

@@ -42,6 +42,10 @@ def read_file(path, delim: str = ";"):
     if not exists:
         return None
 
+    """
+    The function retrieves the discount column
+    values get compared return the given String.
+    """
     def get_discount_name(discount):
         value: float = str_to_number(discount)
 
@@ -52,6 +56,7 @@ def read_file(path, delim: str = ";"):
 
         return "Low"
 
+    # removing all non necassary chars and converting the String into a float
     def str_to_number(str_value: str):
         str_value = str_value.strip()
         str_value = str_value.replace('$', '')
@@ -65,6 +70,7 @@ def read_file(path, delim: str = ";"):
             number = 0
 
         return number
+
 
     data: pd.DataFrame = pd.read_csv(
         'FinancialSample.csv',
