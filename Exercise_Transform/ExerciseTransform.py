@@ -11,8 +11,9 @@ Dusan Milenkovic 1269073
 
 import datetime
 import os.path as pt
-
+import ast
 import pandas as pd
+import numpy as np
 
 # Bons: Checks if File exists.
 def does_csv_exists(filepath: str):
@@ -144,6 +145,38 @@ print(merged_date.sample(10))
 # two lower values. For example: [1, 3, 8, 5, 10, 4] → 8 and 10 are local max values, so the result would
 # be position 2 and position 4
 print("\n----------------Task 5----------------\n")
+
+#Remove non char and non digit values from str
+sample = []
+
+for s in read_file().get("Sales"):
+    v = s.replace("$", "")
+    v = v.replace(".", "")
+    v = v.replace(",", ".")
+    v = v.replace(" ", "")
+    v = v.replace("-", "0")
+    v = v.replace("(", "")
+    v = v.replace(")", "")
+    sample.append(ast.literal_eval(v))
+
+def findLocalMaxima(arr):
+    # Empty lists to store points of
+    # local maxima and minima
+    mx = []
+    n = len(arr)
+
+    # Iterating over all points to check
+    # local maxima and local minima
+    for i in range(1, n - 1):
+
+        # Condition for local maxima
+        if (arr[i - 1] < arr[i] > arr[i + 1]):
+            mx.append(i)
+
+    return mx
+
+print("The ten biggest local max values are:")
+print(np.sort(findLocalMaxima(sample))[-10:])
 
 # Task 6: Create a new dataframe with every X entry of the data, use panda specific functions to achieve this (pandas
 # is mandatory to use). X is the group number.
