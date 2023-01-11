@@ -14,8 +14,8 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - name: PEP8 Action
-        uses: quentinguidee/pep8-action@v1
+      - name: autopep8
+      uses: peter-evans/autopep8@v1.2.2
 
   build:
     runs-on: ubuntu-latest
