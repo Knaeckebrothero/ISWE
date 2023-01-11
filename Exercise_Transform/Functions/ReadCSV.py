@@ -36,12 +36,14 @@ def read_file(path ,delim: str = ";"):
 
         return False
 
+
+
     exists = does_csv_exists(path)
 
     if not exists:
         return None
 
-    data = pd.read_csv('FinancialSample.csv', delimiter=delim)
+    data = pd.read_csv('FinancialSample.csv', delimiter=delim, converters={"Discounts": })
     data = data.rename(columns=lambda x: x.strip())
 
     return data
