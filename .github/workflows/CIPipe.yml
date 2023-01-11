@@ -12,6 +12,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: PEP8 Action
+      # uses: quentinguidee/pep8-action@9af6974c3aeedfe874f9745ed344c3274c5f0d71
+      uses: quentinguidee/pep8-action@v2.0.13-dev
     - uses: actions/checkout@v3
     - name: Set up Python 3.11
       uses: actions/setup-python@v3
