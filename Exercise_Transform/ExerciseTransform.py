@@ -10,6 +10,8 @@ Dusan Milenkovic 1269073
 """
 
 import ast
+
+import pandas
 import pandas as pd
 import numpy as np
 
@@ -22,8 +24,10 @@ from Functions import LocalMaximum as locMax
 # Dataframe. Return the last 10 entries.
 print("\n----------------Task 1----------------\n")
 
+data: pandas.DataFrame = read.read_file("FinancialSample.csv")
+
 print("File read successfully! Here is a sample of 10 rows:")
-print(read.read_file("FinancialSample.csv").tail(10))
+print(data.tail(10))
 
 # Task 2: Transform the column values of ”Date” to American format (MM/DD/YYYY) with datetime library.
 print("\n----------------Task 2----------------\n")
@@ -84,5 +88,7 @@ print(new_data_frame.sample(10))
 # elif > 200 and < 2000→”Medium”
 # elif ≥ 2000→”High”
 print("\n----------------Task 7----------------\n")
-
-print(pd.read_csv('FinancialSample.csv', delimiter=";"))
+print("In Task 1 the csv file has been read and saved in a Dataframe.\n" +
+      "In this process we used converters to convert the Discounts.\n" +
+      "Please see the solution for task one.\n")
+print(data["Discounts"].sample(10))
