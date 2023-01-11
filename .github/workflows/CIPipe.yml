@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: PEP8 Action
-        uses: quentinguidee/pep8-action@v2.0.13-dev
+        uses: quentinguidee/pep8-action@v1
   
   build:
     runs-on: ubuntu-latest
