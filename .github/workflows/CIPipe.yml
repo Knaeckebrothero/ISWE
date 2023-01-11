@@ -31,7 +31,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    needs: check
+    needs: autopep8
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.11
