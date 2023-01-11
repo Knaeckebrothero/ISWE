@@ -24,7 +24,7 @@ from Functions import LocalMaximum as locMax
 # Dataframe. Return the last 10 entries.
 print("\n----------------Task 1----------------\n")
 
-data: pandas.DataFrame = read.read_file("FinancialSample.csv");
+data: pandas.DataFrame = read.read_file("FinancialSample.csv")
 
 print("File read successfully! Here is a sample of 10 rows:")
 print(data.tail(10))
