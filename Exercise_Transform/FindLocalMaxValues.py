@@ -5,6 +5,8 @@ def findLocalMaxima(n, sample):
     # Empty lists to store points of local maxima
     indices = np.zeros((2, n))
 
+    print("Test")
+
     indices = []
     size = []
 
