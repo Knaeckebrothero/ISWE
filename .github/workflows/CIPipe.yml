@@ -14,9 +14,8 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - name: PEP8 Action
-      - uses: quentinguidee/pep8-action@v1
+        uses: quentinguidee/pep8-action@v1
       #- uses: quentinguidee/pep8-action@acad1c4f4dec1dff6424e25d3b599c60c422281e
   
   build:
