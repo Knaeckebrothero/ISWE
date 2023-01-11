@@ -13,6 +13,8 @@ import pandas as pd
 import datetime
 
 # Transforms a given date into american formate
+
+
 def transform_date_to_american_format(df: pd.DataFrame):
     """
     Transforms Date column from any date format to %M/%D/%Y.
