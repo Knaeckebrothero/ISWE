@@ -51,4 +51,3 @@ data_frame_1 = data_frame_1.drop('day', axis=1)
 
 # the merged date column is added to the Dataframe with the name "Merged Data"
 data_frame_1['Merged Date'] = merged_date
-
