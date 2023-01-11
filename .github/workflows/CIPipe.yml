@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: autopep8
-      uses: peter-evans/autopep8@v1.2.2
+        uses: peter-evans/autopep8@v1.2.2
 
   build:
     runs-on: ubuntu-latest
