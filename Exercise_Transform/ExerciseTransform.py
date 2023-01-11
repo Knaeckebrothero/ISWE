@@ -27,10 +27,13 @@ print("\n----------------Task 1----------------\n")
 data: pandas.DataFrame = Read.read_file("FinancialSample.csv")
 print("File read successfully! Here is a sample of 10 rows:")
 print(data.tail(10))
-# Task 2: Transform the column values of ”Date” to American format (MM/DD/YYYY) with datetime library.
+# Task 2: Transform the column values of ”Date” to American format
+# (MM/DD/YYYY) with datetime library.
 print("\n----------------Task 2----------------\n")
-raw_data = Reformat.transform_date_to_american_format(Read.read_file("FinancialSample.csv"))
-# Task 3: Create a new Pandas Dateframe with following columns and content (Product, Profit, COGS, Sales).
+raw_data = Reformat.transform_date_to_american_format(
+    Read.read_file("FinancialSample.csv"))
+# Task 3: Create a new Pandas Dateframe with following columns and content
+# (Product, Profit, COGS, Sales).
 print("\n----------------Task 3----------------\n")
 df: pd.DataFrame = raw_data
 
@@ -71,8 +74,11 @@ print(np.sort(locMax.find(sample))[-10:])
 print("\n----------------Task 6----------------\n")
 
 # a new Dataframe is created with every 4th data entry with help of the iloc function.
-# the reset_index function creates an index that starts at 0 and increments by 1, the drop=True statement removes the column with the old indexs
-new_data_frame = pd.DataFrame(Merge.data_frame_1.iloc[::4, :].reset_index(drop=True))
+# the reset_index function creates an index that starts at 0 and
+# increments by 1, the drop=True statement removes the column with the old
+# indexs
+new_data_frame = pd.DataFrame(
+    Merge.data_frame_1.iloc[::4, :].reset_index(drop=True))
 
 print("A new Dataframe has been created with every 4th data entry. Here is a sample of 10 rows:")
 print(new_data_frame.sample(10))
