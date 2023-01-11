@@ -12,7 +12,7 @@ Dusan Milenkovic 1269073
 import pandas as pd
 import datetime
 
-
+# Transforms a given date into american formate
 def transform_date_to_american_format(df: pd.DataFrame):
     """
     Transforms Date column from any date format to %M/%D/%Y.
@@ -20,6 +20,7 @@ def transform_date_to_american_format(df: pd.DataFrame):
     :return: Pandas Dataframe with Date column formatted.
     """
 
+    # formates the date
     def format_date_to_american(date_mal_formatted: datetime.date):
         """
         Formats date format to %M/%D/%Y.
