@@ -159,8 +159,43 @@ for s in read_file().get("Sales"):
     v = v.replace(")", "")
     sample.append(ast.literal_eval(v))
 
-a = np.array(sample)
-print(np.r_[True, a[1:] < a[:-1]] & np.r_[a[:-1] < a[1:], True])
+
+def findLocalMaxima(n, arr):
+    # Empty lists to store points of
+    # local maxima and minima
+    mx = []
+
+    # Checking whether the first point is
+    # local maxima or minima or neither
+    if (arr[0] > arr[1]):
+        mx.append(0)
+
+    # Iterating over all points to check
+    # local maxima and local minima
+    for i in range(1, n - 1):
+
+        # Condition for local maxima
+        if (arr[i - 1] < arr[i] > arr[i + 1]):
+            mx.append(i)
+
+    # Checking whether the last point is local maxima
+    if (arr[-1] > arr[-2]):
+        mx.append(n - 1)
+
+        # Print all the local maxima indexes stored
+    if (len(mx) > 0):
+        print("Points of Local maxima" \
+              " are : ", end='')
+        print(*mx)
+    else:
+        print("There are no points of" \
+              " Local maxima.")
+
+findLocalMaxima(len(sample), sample)
+
+
+#a = np.array(sample)
+#print(np.r_[True, a[1:] < a[:-1]] & np.r_[a[:-1] < a[1:], True])
 
 # Task 6: Create a new dataframe with every X entry of the data, use panda specific functions to achieve this (pandas
 # is mandatory to use). X is the group number.
