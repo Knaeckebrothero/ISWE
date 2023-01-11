@@ -10,7 +10,6 @@ Dusan Milenkovic 1269073
 """
 
 import ast
-
 import pandas
 import pandas as pd
 import numpy as np
@@ -18,23 +17,28 @@ import numpy as np
 from Functions import ReadCSV as Read
 from Functions import ReformateDate as Reformat
 from Functions import MergeDate as Merge
-
 from Functions import LocalMaximum as locMax
 
 # Task 1: Extract the same data from the last assignment (FinancialSample.csv), but this time store it into a Pandas
 # Dataframe. Return the last 10 entries.
 print("\n----------------Task 1----------------\n")
+
 data: pandas.DataFrame = Read.read_file("FinancialSample.csv")
+
 print("File read successfully! Here is a sample of 10 rows:")
 print(data.tail(10))
+
 # Task 2: Transform the column values of ”Date” to American format
 # (MM/DD/YYYY) with datetime library.
 print("\n----------------Task 2----------------\n")
+
 raw_data = Reformat.transform_date_to_american_format(
     Read.read_file("FinancialSample.csv"))
+
 # Task 3: Create a new Pandas Dateframe with following columns and content
 # (Product, Profit, COGS, Sales).
 print("\n----------------Task 3----------------\n")
+
 df: pd.DataFrame = raw_data
 
 print("A new Pandas Dateframe with the required columns and contents has been created. Here is a sample of 10 rows:")
