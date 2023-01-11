@@ -8,11 +8,12 @@ Niklas Riel 1253801,
 Amine Amzil 1286865,
 Dusan Milenkovic 1269073
 """
-
+import pandas
 import pandas as pd
 import os.path as pt
 
-def read_file(path ,delim: str = ";"):
+
+def read_file(path, delim: str = ";"):
     """
     Reads a csv file and print last 10 rows if exists.
     :param delim: csv file delimiter, by default ';'
@@ -41,7 +42,35 @@ def read_file(path ,delim: str = ";"):
     if not exists:
         return None
 
-    data = pd.read_csv('FinancialSample.csv', delimiter=delim)
-    data = data.rename(columns=lambda x: x.strip())
+    def get_discount_name(discount):
+        value: float = str_to_number(discount)
 
+        if value >= 2000:
+            return "High"
+        elif value > 200:
+            return "Medium"
+
+        return "Low"
+
+    def str_to_number(str_value: str):
+        str_value = str_value.strip()
+        str_value = str_value.replace('$', '')
+        str_value = str_value.replace(',', '')
+        str_value = str_value.replace(' ', '')
+        number: float = 0
+
+        try:
+            number = number + float(str_value)
+        except ValueError:
+            number = 0
+
+        return number
+
+    data: pd.DataFrame = pd.read_csv(
+        'FinancialSample.csv',
+        delimiter=delim,
+        converters={' Discounts ': get_discount_name}
+    )
+
+    data: pd.DataFrame = data.rename(columns=lambda x: x.strip())
     return data
